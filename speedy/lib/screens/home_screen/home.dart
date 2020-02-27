@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:speedy/routes/application.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+//import 'package:speedy/routes/application.dart';
 
 class CheckSpeed extends StatefulWidget {
   @override
@@ -9,7 +10,26 @@ class CheckSpeed extends StatefulWidget {
 class _CheckSpeedState extends State<CheckSpeed> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("Check speed"));
+    return SafeArea(
+        child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "Check speed",
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
+          RaisedButton(
+            onPressed: () {},
+            color: Colors.green,
+            child: Text(
+              "Check my speed",
+              style: TextStyle(color: Colors.white, fontSize: 15),
+            ),
+          )
+        ],
+      ),
+    ));
   }
 }
 
@@ -19,9 +39,21 @@ class Map extends StatefulWidget {
 }
 
 class _MapState extends State<Map> {
+  GoogleMapController mapController;
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+  final LatLng _center = const LatLng(45.521563, -122.677433);
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("Map"));
+    return Container(
+        child: GoogleMap(
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+            target: _center,
+            zoom: 11.0,
+    )));
   }
 }
 
@@ -60,10 +92,10 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.directions_car),
-            title: Text('New fine'),
+            title: Text('Test Speed'),
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.ac_unit), title: Text('View Fines')),
+              icon: Icon(Icons.ac_unit), title: Text('Speed Tests')),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
