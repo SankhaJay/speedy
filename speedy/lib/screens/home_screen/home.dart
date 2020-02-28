@@ -1,13 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'package:speedy/routes/application.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class CheckSpeed extends StatefulWidget {
   @override
   _CheckSpeedState createState() => _CheckSpeedState();
 }
 
-class _CheckSpeedState extends State<CheckSpeed> {
+class _CheckSpeedState extends State<CheckSpeed>
+    with SingleTickerProviderStateMixin {
+  AnimationController animController;
+  Animation<double> value;
+
+  @override
+  void initState() {
+    super.initState();
+    animController =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    value = Tween<double>(begin: 0, end: 100).animate(animController)
+      ..addListener((){
+        setState(() {});
+      })..addStatusListener((status){
+        if(status == AnimationStatus.completed){
+          animController.reverse();
+        }
+        else if(status == AnimationStatus.dismissed){
+          animController.forward();
+        }
+      });
+
+    animController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,6 +44,35 @@ class _CheckSpeedState extends State<CheckSpeed> {
             "Check speed",
             style: TextStyle(color: Colors.black, fontSize: 20),
           ),
+          SizedBox(
+            height: 200,
+            child: SfRadialGauge(
+            
+            axes: <RadialAxis>[
+            RadialAxis(
+              minimum: 0,
+              maximum: 150,
+              ranges: <GaugeRange>[
+                GaugeRange(startValue: 0, endValue: 50, color: Colors.green),
+                GaugeRange(startValue: 50, endValue: 100, color: Colors.orange),
+                GaugeRange(startValue: 100, endValue: 150, color: Colors.red)
+              ],
+              pointers: <GaugePointer>[
+                NeedlePointer(value: value.value, enableAnimation: true)
+              ],
+              annotations: <GaugeAnnotation>[
+                // GaugeAnnotation(
+                //     widget: Container(
+                //         child: Text('90.0',
+                //             style: TextStyle(
+                //                 fontSize: 25, fontWeight: FontWeight.bold))),
+                //     angle: 90,
+                //     positionFactor: 0.5)
+              ],
+            )
+          ]),
+          ),
+          
           RaisedButton(
             onPressed: () {},
             color: Colors.green,
@@ -30,6 +84,12 @@ class _CheckSpeedState extends State<CheckSpeed> {
         ],
       ),
     ));
+  }
+
+  @override
+  void dispose() {
+    animController.dispose();
+    super.dispose();
   }
 }
 
@@ -44,6 +104,7 @@ class _MapState extends State<Map> {
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
+
   final LatLng _center = const LatLng(45.521563, -122.677433);
   @override
   Widget build(BuildContext context) {
@@ -51,9 +112,9 @@ class _MapState extends State<Map> {
         child: GoogleMap(
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 11.0,
-    )));
+              target: _center,
+              zoom: 11.0,
+            )));
   }
 }
 
