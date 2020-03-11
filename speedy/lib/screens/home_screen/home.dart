@@ -74,7 +74,9 @@ class _CheckSpeedState extends State<CheckSpeed>
           ),
           
           RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/check');
+            },
             color: Colors.green,
             child: Text(
               "Check my speed",
