@@ -12,7 +12,7 @@ class _CheckSpeedState extends State<CheckSpeed>
     with SingleTickerProviderStateMixin {
   AnimationController animController;
   Animation<double> value;
-
+  
   @override
   void initState() {
     super.initState();
