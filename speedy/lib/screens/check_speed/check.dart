@@ -2,20 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:speedy/screens/home_screen/home.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:speedy/services/checkService.dart';
 
 class Check extends StatefulWidget {
+  double progressString;
   @override
   _CheckState createState() => _CheckState();
 }
 
 class _CheckState extends State<Check> {
-  final imgUrl = "https://unsplash.com/photos/iEJVyyevw-U/download?force=true";
+  
   bool downloading = false;
   double progressString;
   double netSpeed = 0;
   String speed = '0 kbps';
   //DateTime time;
-  Duration time;
+  Future<Duration> time;
+  Duration timeAsDuration;
   @override
   void initState() {
     super.initState();
@@ -23,36 +27,23 @@ class _CheckState extends State<Check> {
     checkSpeed();
   }
 
-  Future<void> checkSpeed() async {
+  Future checkSpeed() async {
     setState(() {
       downloading = true;
 
     });
-    Dio dio = Dio();
-    try {
-      var dir = await getApplicationDocumentsDirectory();
-      var now = new DateTime.now();
-      await dio.download(imgUrl,"${dir.path}/image.jpg",onReceiveProgress: (rec, total){
-        print("Receive: $rec, Total: $total");
-        print(now);
 
-        setState(() {
-          progressString = (((rec/total)*100));
-        });
-      }); 
-      var later = new DateTime.now();
-      print(later);
-      time = later.difference(now);
-      print(time.inSeconds);
-    }
-    catch(err){
-      print(err);
-    }
-    setState(() {
+    print("nsjdngjksnjgndngsglsdngksndgls+MLFSMB;SM;BMS;M;SM;S");
+    CheckService().getSpeed().then((time){
+      setState(() {
       downloading = false;
-      netSpeed = 4000/time.inSeconds;
+      netSpeed = 3200/time.inSeconds;
       speed = (netSpeed.toStringAsFixed(2)) + " kbps";
     });
+    });
+
+    print("nsjdngjksnjgndngsglsdngksndgls");
+    
   }
 
   @override
@@ -79,7 +70,7 @@ class _CheckState extends State<Check> {
                         ],
                       )),
                 )
-              : Text("$speed")),
+              : Text("$speed\n")),
     );
   }
 }
