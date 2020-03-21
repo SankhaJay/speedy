@@ -10,7 +10,8 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   String _email, _password;
   var firstColor = Color(0xff5b86e5);
-  var buttonColor = Color(0xff00e600);
+  var green = Color(0xff00e600);
+  var blue = Color(0xff005c99);
   static final _formKey = new GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   bool isenabled;
@@ -147,7 +148,24 @@ class _AuthScreenState extends State<AuthScreen> {
                   _handleLogin(_email, _password, context);
                 },
                 text: "Login",
-                background: buttonColor,
+                background: green,
+              ),
+              SizedBox(
+                height: 10 
+              ),
+              Text("OR"),
+              SizedBox(
+                height: 10 
+              ),
+              NiceButton(
+                width: 3 * (MediaQuery.of(context).size.width) / 8,
+                elevation: 8,
+                radius: 52,
+                onPressed: (){
+                  Navigator.pushNamed(context, '/reg');
+                },
+                text: "Register",
+                background: blue,
               ),
               Expanded(
                 child: Container(),
