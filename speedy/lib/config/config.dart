@@ -1,3 +1,3 @@
 class Config {
-  static String baseUrl = "https://speedy-server.herokuapp.com/";
+  static String baseUrl = "https://speedy-server.herokuapp.com";
 }
