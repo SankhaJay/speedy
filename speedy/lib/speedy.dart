@@ -20,17 +20,6 @@ class Speedy extends StatelessWidget {
   Widget build(BuildContext context) {
     //main MaterialApp widget of the app
     return MaterialApp(
-<<<<<<< HEAD
-        title: "Speedy",
-        debugShowCheckedModeBanner: false,
-        //onGenerateRoute: Application.router.generator,
-        initialRoute: '/',
-        routes: {
-          '/': (context) => SplashScreen(),
-          '/home': (context) => HomeScreen(),
-          '/check': (context) => Check(),
-        });
-=======
       title: "Speedy",
       debugShowCheckedModeBanner: false,
       //onGenerateRoute: Application.router.generator,
@@ -43,6 +32,5 @@ class Speedy extends StatelessWidget {
         '/reg': (context) => Register(),
       }
     );
->>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
   }
 }

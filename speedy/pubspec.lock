@@ -162,15 +162,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.9"
-<<<<<<< HEAD
-  fixnum:
-    dependency: transitive
-    description:
-      name: fixnum
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.10.11"
-=======
   equatable:
     dependency: transitive
     description:
@@ -178,7 +169,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
->>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
+  fixnum:
+    dependency: transitive
+    description:
+      name: fixnum
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.11"
   fluro:
     dependency: "direct main"
     description:
@@ -215,7 +212,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
   front_end:
     dependency: transitive
     description:
@@ -223,14 +219,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.19"
-  glob:
-    dependency: transitive
-    description:
-      name: glob
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
-=======
   geolocator:
     dependency: "direct main"
     description:
@@ -238,6 +226,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.3.0"
+  glob:
+    dependency: transitive
+    description:
+      name: glob
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
   google_api_availability:
     dependency: transitive
     description:
@@ -245,7 +240,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.3"
->>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
   google_maps_flutter:
     dependency: "direct main"
     description:
@@ -309,7 +303,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.3"
-<<<<<<< HEAD
   js:
     dependency: transitive
     description:
@@ -338,14 +331,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.19"
-  logging:
-    dependency: transitive
-    description:
-      name: logging
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.11.4"
-=======
   location_permissions:
     dependency: transitive
     description:
@@ -360,7 +345,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.8.3"
->>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.11.4"
   matcher:
     dependency: transitive
     description:
@@ -375,7 +366,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.8"
-<<<<<<< HEAD
   mime:
     dependency: transitive
     description:
@@ -383,6 +373,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.6+3"
+  nice_button:
+    dependency: "direct main"
+    description:
+      name: nice_button
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.7"
   node_interop:
     dependency: transitive
     description:
@@ -403,7 +400,7 @@ packages:
       name: package_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.1"
+    version: "1.9.3"
   package_resolver:
     dependency: transitive
     description:
@@ -411,15 +408,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.10"
-=======
-  nice_button:
-    dependency: "direct main"
-    description:
-      name: nice_button
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.7"
->>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
   path:
     dependency: transitive
     description:
@@ -504,22 +492,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
-<<<<<<< HEAD
-  shelf:
-    dependency: transitive
-    description:
-      name: shelf
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.5"
-  shelf_web_socket:
-    dependency: transitive
-    description:
-      name: shelf_web_socket
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.3"
-=======
   shared_preferences:
     dependency: "direct main"
     description:
@@ -548,7 +520,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2+4"
->>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
+  shelf:
+    dependency: transitive
+    description:
+      name: shelf
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.5"
+  shelf_web_socket:
+    dependency: transitive
+    description:
+      name: shelf_web_socket
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.3"
   sky_engine:
     dependency: transitive
     description: flutter
