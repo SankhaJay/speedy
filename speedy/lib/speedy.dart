@@ -1,4 +1,3 @@
-
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:speedy/routes/application.dart';
@@ -19,16 +18,14 @@ class Speedy extends StatelessWidget {
   Widget build(BuildContext context) {
     //main MaterialApp widget of the app
     return MaterialApp(
-      title: "Speedy",
-      debugShowCheckedModeBanner: false,
-      //onGenerateRoute: Application.router.generator,
-      initialRoute: '/',
-      routes:{
-        '/': (context) => SplashScreen(),
-        '/home': (context) => HomeScreen(),
-        '/check': (context) => Check(),
-      }
-    );
+        title: "Speedy",
+        debugShowCheckedModeBanner: false,
+        //onGenerateRoute: Application.router.generator,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => SplashScreen(),
+          '/home': (context) => HomeScreen(),
+          '/check': (context) => Check(),
+        });
   }
 }
-

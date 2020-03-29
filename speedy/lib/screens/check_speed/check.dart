@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:speedy/screens/home_screen/home.dart';
 
 class Check extends StatefulWidget {
   @override
@@ -26,31 +25,30 @@ class _CheckState extends State<Check> {
   Future<void> checkSpeed() async {
     setState(() {
       downloading = true;
-
     });
     Dio dio = Dio();
     try {
       var dir = await getApplicationDocumentsDirectory();
-      var now = new DateTime.now();
-      await dio.download(imgUrl,"${dir.path}/image.jpg",onReceiveProgress: (rec, total){
+      var now = DateTime.now();
+      await dio.download(imgUrl, "${dir.path}/image.jpg",
+          onReceiveProgress: (rec, total) {
         print("Receive: $rec, Total: $total");
         print(now);
 
         setState(() {
-          progressString = (((rec/total)*100));
+          progressString = (((rec / total) * 100));
         });
-      }); 
-      var later = new DateTime.now();
+      });
+      var later = DateTime.now();
       print(later);
       time = later.difference(now);
       print(time.inSeconds);
-    }
-    catch(err){
+    } catch (err) {
       print(err);
     }
     setState(() {
       downloading = false;
-      netSpeed = 4000/time.inSeconds;
+      netSpeed = 4000 / time.inSeconds;
       speed = (netSpeed.toStringAsFixed(2)) + " kbps";
     });
   }
