@@ -158,7 +158,9 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('Test Speed'),
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.ac_unit), title: Text('Speed Tests')),
+              icon: Icon(Icons.ac_unit), 
+              title: Text('Map')
+          ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
