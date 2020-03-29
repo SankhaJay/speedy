@@ -3,4 +3,3 @@ import 'package:speedy/speedy.dart';
 // app starts here
 
 void main() => runApp(Speedy());
- 
