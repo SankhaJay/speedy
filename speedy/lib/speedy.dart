@@ -2,8 +2,10 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:speedy/routes/application.dart';
 import 'package:speedy/routes/routes.dart';
+import 'package:speedy/screens/auth_screen/auth.dart';
 import 'package:speedy/screens/check_speed/check.dart';
 import 'package:speedy/screens/home_screen/home.dart';
+import 'package:speedy/screens/reg_screen/reg.dart';
 import 'package:speedy/screens/spash_screen/splash.dart';
 
 class Speedy extends StatelessWidget {
@@ -18,6 +20,7 @@ class Speedy extends StatelessWidget {
   Widget build(BuildContext context) {
     //main MaterialApp widget of the app
     return MaterialApp(
+<<<<<<< HEAD
         title: "Speedy",
         debugShowCheckedModeBanner: false,
         //onGenerateRoute: Application.router.generator,
@@ -27,5 +30,19 @@ class Speedy extends StatelessWidget {
           '/home': (context) => HomeScreen(),
           '/check': (context) => Check(),
         });
+=======
+      title: "Speedy",
+      debugShowCheckedModeBanner: false,
+      //onGenerateRoute: Application.router.generator,
+      initialRoute: '/',
+      routes:{
+        '/': (context) => SplashScreen(),
+        '/auth': (context) => AuthScreen(),
+        '/home': (context) => HomeScreen(),
+        '/check': (context) => Check(),
+        '/reg': (context) => Register(),
+      }
+    );
+>>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
   }
 }

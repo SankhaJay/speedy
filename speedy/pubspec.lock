@@ -162,6 +162,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.9"
+<<<<<<< HEAD
   fixnum:
     dependency: transitive
     description:
@@ -169,6 +170,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.11"
+=======
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
+>>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
   fluro:
     dependency: "direct main"
     description:
@@ -205,6 +215,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+<<<<<<< HEAD
   front_end:
     dependency: transitive
     description:
@@ -219,6 +230,22 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+=======
+  geolocator:
+    dependency: "direct main"
+    description:
+      name: geolocator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.3.0"
+  google_api_availability:
+    dependency: transitive
+    description:
+      name: google_api_availability
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
+>>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
   google_maps_flutter:
     dependency: "direct main"
     description:
@@ -282,6 +309,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.3"
+<<<<<<< HEAD
   js:
     dependency: transitive
     description:
@@ -317,6 +345,22 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.11.4"
+=======
+  location_permissions:
+    dependency: transitive
+    description:
+      name: location_permissions
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.5"
+  logger:
+    dependency: "direct main"
+    description:
+      name: logger
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.3"
+>>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
   matcher:
     dependency: transitive
     description:
@@ -331,6 +375,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.8"
+<<<<<<< HEAD
   mime:
     dependency: transitive
     description:
@@ -366,6 +411,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.10"
+=======
+  nice_button:
+    dependency: "direct main"
+    description:
+      name: nice_button
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.7"
+>>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
   path:
     dependency: transitive
     description:
@@ -450,6 +504,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+<<<<<<< HEAD
   shelf:
     dependency: transitive
     description:
@@ -464,6 +519,36 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.3"
+=======
+  shared_preferences:
+    dependency: "direct main"
+    description:
+      name: shared_preferences
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.6+3"
+  shared_preferences_macos:
+    dependency: transitive
+    description:
+      name: shared_preferences_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1+6"
+  shared_preferences_platform_interface:
+    dependency: transitive
+    description:
+      name: shared_preferences_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
+  shared_preferences_web:
+    dependency: transitive
+    description:
+      name: shared_preferences_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2+4"
+>>>>>>> 758c96623c967f47c3b9a58594276f7579ec92f0
   sky_engine:
     dependency: transitive
     description: flutter
