@@ -64,7 +64,7 @@ class _RegisterState extends State<Register> {
                   child: Container(
                       width: 320,
                       child: TextFormField(
-                        obscureText: true,
+                        obscureText: false,
                         onChanged: (value) {
                           setState(() {
                             user['email'] = value;

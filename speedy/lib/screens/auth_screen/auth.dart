@@ -28,7 +28,7 @@ class _AuthScreenState extends State<AuthScreen> {
   ) async {
     AuthService().login(_email, _password).then((res) {
       if (res) {
-        //Application.router.navigateTo(context, '/home', clearStack: true);
+        Navigator.pushNamed(context, '/home');
       } else {
         isenabled = true;
         showDialog(

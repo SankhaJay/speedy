@@ -13,9 +13,9 @@ class AuthService {
     userMail = email;
     Logger().i('$email');
     Logger().i('$password');
-    Logger().i( 'Uri $baseUrl/auth/login?officer_id=$email&password=$password');
+    //Logger().i( 'Uri $baseUrl/auth/login?officer_id=$email&password=$password');
     return Dio().get(
-      '$baseUrl/auth/login?user_email=$email&password=$password',
+      '$baseUrl/auth/login?email=$email&password=$password',
       // data: {
       //   "officerID": id, 
       //   "password": password,
