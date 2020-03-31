@@ -38,7 +38,8 @@ class Locations {
 }
 
 Future<Locations> getLocationData() async {
-  const googleLocationsURL = 'http://35c91e1e.ngrok.io/locationsRouter/locations';
+  // const googleLocationsURL = 'http://35c91e1e.ngrok.io/locationsRouter/locations';
+  const googleLocationsURL = 'https://speedy-server.herokuapp.com/locationsRouter/locations';
   // forwarded localhost url from https://dashboard.ngrok.com/get-started
   // Retrieve the locations
   final response = await http.get(googleLocationsURL);
