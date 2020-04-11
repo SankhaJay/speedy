@@ -32,11 +32,11 @@ class PrefService {
   //   });
   // }
 
-  Future<bool> getSession() {
-    return SharedPreferences.getInstance()
-        .then((instance) => instance.getBool("isSession"))
-        .catchError((error) => Logger().e(error));
-  }
+  // Future<bool> getSession() {
+  //   return SharedPreferences.getInstance()
+  //       .then((instance) => instance.getBool("isSession"))
+  //       .catchError((error) => Logger().e(error));
+  // }
 
   
 }

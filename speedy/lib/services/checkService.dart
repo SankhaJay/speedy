@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:path_provider/path_provider.dart';

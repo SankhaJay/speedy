@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +12,7 @@ class AuthService {
     userMail = email;
     Logger().i('$email');
     Logger().i('$password');
+    print(baseUrl);
     //Logger().i( 'Uri $baseUrl/auth/login?officer_id=$email&password=$password');
     return Dio().get(
       '$baseUrl/auth/login?email=$email&password=$password',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:speedy/screens/home_screen/CheckSpeed.dart';
 import 'package:speedy/screens/home_screen/MapX.dart';
+import 'package:speedy/screens/home_screen/MyTests.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -16,7 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> _widgetOptions = <Widget>[
     //list of bottom navigation bar items
     CheckSpeed(),
-    MapX()
+    MapX(),
+    MyTests()
   ];
 
   void _onItemTapped(int index) {
