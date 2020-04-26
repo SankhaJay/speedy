@@ -64,7 +64,7 @@ class _MyTestsState extends State<MyTests> {
                             itemCount: snapshot.data.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
-                                height: 150,
+                                height: 200,
                                 width: 11 *
                                     (MediaQuery.of(context).size.width) /
                                     12,
@@ -133,6 +133,7 @@ class _MyTestsState extends State<MyTests> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: <Widget>[
+                                        
                                         Column(
                                           children: <Widget>[
                                             Text(
@@ -143,12 +144,21 @@ class _MyTestsState extends State<MyTests> {
                                             ),
                                             Text(
                                               "${snapshot.data[index].location_name}",
+                                              overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   fontSize: 18,
                                                   color: Colors.white),
                                             ),
+                                            
                                           ],
                                         ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
                                         Column(
                                           children: <Widget>[
                                             Text(
@@ -183,6 +193,7 @@ class _MyTestsState extends State<MyTests> {
                                             ),
                                           ],
                                         ),
+                                        
                                       ],
                                     ),
                                     SizedBox(height: 10),

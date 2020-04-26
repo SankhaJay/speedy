@@ -90,3 +90,4 @@ class _CheckSpeedState extends State<CheckSpeed>
     super.dispose();
   }
 }
+ 

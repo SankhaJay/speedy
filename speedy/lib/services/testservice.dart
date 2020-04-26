@@ -30,7 +30,7 @@ class TestService {
     print(baseUrl);
     return await Dio()
         .get(
-      '$baseUrl/tests/get-tests?email=work.sankha@gmail.com',
+      '$baseUrl/tests/get-tests?email=sankha.rc@gmail.com',
     )
         .then((res){
       Logger().i("$res");
