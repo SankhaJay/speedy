@@ -90,11 +90,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           borderSide: BorderSide(color: Colors.yellow),
                         ),
                         labelText: "Email",
-                        labelStyle: TextStyle(
-                          color: Colors.black
-                        ),
-
-                        
+                        labelStyle: TextStyle(color: Colors.black),
                         fillColor: Colors.white,
                       ),
                       keyboardType: TextInputType.text,
@@ -117,9 +113,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           borderSide: BorderSide(color: Colors.yellow),
                         ),
                         labelText: "Password",
-                         labelStyle: TextStyle(
-                          color: Colors.black
-                        ),
+                        labelStyle: TextStyle(color: Colors.black),
                         fillColor: Colors.white,
                       ),
                       keyboardType: TextInputType.text,
@@ -135,6 +129,19 @@ class _AuthScreenState extends State<AuthScreen> {
                     },
                     text: "Login",
                     background: gold,
+                  ),
+                  SizedBox(height: 20),
+                  Text("OR"),
+                  SizedBox(height: 20),
+                  NiceButton(
+                    width: 3 * (MediaQuery.of(context).size.width) / 8,
+                    elevation: 8,
+                    //radius: 52,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/reg');
+                    },
+                    text: "Register",
+                    background: Colors.black,
                   ),
                 ],
               ),
@@ -243,16 +250,7 @@ class _AuthScreenState extends State<AuthScreen> {
     //           SizedBox(
     //             height: 10
     //           ),
-    //           NiceButton(
-    //             width: 3 * (MediaQuery.of(context).size.width) / 8,
-    //             elevation: 8,
-    //             radius: 52,
-    //             onPressed: (){
-    //               Navigator.pushNamed(context, '/reg');
-    //             },
-    //             text: "Register",
-    //             background: blue,
-    //           ),
+
     //           Expanded(
     //             child: Container(),
     //           )

@@ -8,8 +8,8 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-
   static final _regFormKey = new GlobalKey<FormState>();
+  FocusNode _focusNode = new FocusNode();
   String email;
   String password;
   String first_name;
@@ -18,8 +18,8 @@ class _RegisterState extends State<Register> {
   var user = Map();
   var yellow = Color(0xffcccc00);
 
-  Future registerUser(Map user)async{
-    AuthService().register(user).then((res){
+  Future registerUser(Map user) async {
+    AuthService().register(user).then((res) {
       if (res) {
         Navigator.pushNamed(context, '/home');
       } else {
@@ -46,7 +46,8 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        body: Form(
+        body: SingleChildScrollView(
+            child: Form(
           key: _regFormKey,
           child: Column(
             children: <Widget>[
@@ -70,9 +71,7 @@ class _RegisterState extends State<Register> {
                             user['email'] = value;
                           });
                         },
-                        validator: (val) {
-                          
-                        },
+                        validator: (val) {},
                         decoration: InputDecoration(
                           labelText: "Your Email",
                         ),
@@ -94,9 +93,7 @@ class _RegisterState extends State<Register> {
                             user['password'] = value;
                           });
                         },
-                        validator: (val) {
-                          
-                        },
+                        validator: (val) {},
                         decoration: InputDecoration(
                           labelText: "Password",
                         ),
@@ -118,14 +115,12 @@ class _RegisterState extends State<Register> {
                             user['first_name'] = value;
                           });
                         },
-                        validator: (val) {
-                          
-                        },
+                        validator: (val) {},
                         decoration: InputDecoration(
                           labelText: "First Name",
                         ),
                         keyboardType: TextInputType.text,
-                        style: new TextStyle(
+                        style: TextStyle(
                           fontFamily: "Poppins",
                         ),
                       ))),
@@ -142,9 +137,7 @@ class _RegisterState extends State<Register> {
                             user['last_name'] = value;
                           });
                         },
-                        validator: (val) {
-                          
-                        },
+                        validator: (val) {},
                         decoration: InputDecoration(
                           labelText: "Last Name",
                         ),
@@ -166,9 +159,7 @@ class _RegisterState extends State<Register> {
                             user['contact_number'] = value;
                           });
                         },
-                        validator: (val) {
-                          
-                        },
+                        validator: (val) {},
                         decoration: InputDecoration(
                           labelText: "Contact Number",
                         ),
@@ -178,24 +169,21 @@ class _RegisterState extends State<Register> {
                         ),
                       ))),
               SizedBox(
-                height: 8,
+                height: 20,
               ),
-              
-              SizedBox(
-                height: 18,
-              ),
+            
               NiceButton(
                 width: 3 * (MediaQuery.of(context).size.width) / 8,
                 elevation: 8,
-                radius: 52,
-                onPressed: (){
+                // radius: 52,
+                onPressed: () {
                   registerUser(user);
                 },
                 text: "Register",
-                background: yellow,
+                background: Colors.black,
               ),
             ],
           ),
-        ));
+        )));
   }
 }

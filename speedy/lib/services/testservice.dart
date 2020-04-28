@@ -27,10 +27,13 @@ class TestService {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     // String user = prefs.getString("user");
     // Logger().i('$officer');
+
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        String email = prefs.getString("email");
     print(baseUrl);
     return await Dio()
         .get(
-      '$baseUrl/tests/get-tests?email=sankha.rc@gmail.com',
+      '$baseUrl/tests/get-tests?email=${email}',
     )
         .then((res){
       Logger().i("$res");
@@ -50,7 +53,7 @@ class TestService {
           Logger().i(f["tested_at"]);
            //Logger().i(tests);
           Test test = Test(
-              f["_id"],
+              f["_id"], 
               f["speed"],
               f["isp"],
               location["name"],

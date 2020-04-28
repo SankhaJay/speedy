@@ -2,9 +2,18 @@ import 'package:dio/dio.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:speedy/config/config.dart';
 import 'package:speedy/screens/check_speed/check.dart';
 import 'package:speedy/services/testservice.dart';
+
+class Details {
+  String address;
+  double latitude;
+  double longitude;
+
+  Details(this.address, this.latitude, this.longitude);
+}
 
 class CheckService {
   final imgUrl = "https://unsplash.com/photos/iEJVyyevw-U/download?force=true";
@@ -37,6 +46,7 @@ class CheckService {
   }
 
   Future<List> postResult(String speed) async {
+    List details_list = [];
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     List<Placemark> placemark = await Geolocator()
@@ -46,10 +56,13 @@ class CheckService {
     print(position);
     print(speed);
     print(address);
-    return Dio().post(
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String email = prefs.getString("email");
+    print(email);
+    return await Dio().post(
       '$baseUrl/tests/check-speed',
       data: {
-        "email": 'sankha.rc@gmail.com',
+        "email": email,
         "speed": speed,
         "location": {
           "name": address,
@@ -62,7 +75,10 @@ class CheckService {
       if (res.statusCode == 201) {
         Logger().i('here');
         print(res);
-        return [address, position.latitude, position.longitude];
+        Details details =
+            Details(address, position.latitude, position.longitude);
+        details_list.add(details);
+        return details_list;
       }
 
       return false;
