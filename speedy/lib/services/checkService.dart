@@ -5,14 +5,16 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:speedy/config/config.dart';
 import 'package:speedy/screens/check_speed/check.dart';
+import 'package:get_ip/get_ip.dart';
 import 'package:speedy/services/testservice.dart';
 
 class Details {
   String address;
   double latitude;
   double longitude;
+  String isp;
 
-  Details(this.address, this.latitude, this.longitude);
+  Details(this.address, this.latitude, this.longitude, this.isp);
 }
 
 class CheckService {
@@ -47,6 +49,7 @@ class CheckService {
 
   Future<List> postResult(String speed) async {
     List details_list = [];
+    String isp;
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     List<Placemark> placemark = await Geolocator()
@@ -58,7 +61,18 @@ class CheckService {
     print(address);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String email = prefs.getString("email");
+    String ip;
     print(email);
+    await Dio().get('https://api.ipify.org').then((res) {
+      if (res.statusCode == 200) {
+        print(res);
+        ip = res.data as String;
+        print(ip);
+      } else {
+        return null;
+      }
+    }).catchError((err)=>false);
+    print(ip);
     return await Dio().post(
       '$baseUrl/tests/check-speed',
       data: {
@@ -68,15 +82,19 @@ class CheckService {
           "name": address,
           "longitude": position.longitude,
           "latitude": position.latitude
-        }
+        },
+        "ip": ip
       },
     ).then((res) async {
       Logger().i('$res');
+      isp = res.data["data"]["isp"];
+      Logger().i('${res.data["data"]}');
+
       if (res.statusCode == 201) {
         Logger().i('here');
         print(res);
         Details details =
-            Details(address, position.latitude, position.longitude);
+            Details(address, position.latitude, position.longitude, isp);
         details_list.add(details);
         return details_list;
       }

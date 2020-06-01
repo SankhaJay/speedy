@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:nice_button/NiceButton.dart';
+import 'package:speedy/services/authService.dart';
 import 'package:speedy/services/testservice.dart';
 
 class MyTests extends StatefulWidget {
@@ -42,16 +44,34 @@ class _MyTestsState extends State<MyTests> {
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 40,
+                    height: MediaQuery.of(context).size.height/15,
                   ),
                   Center(
-                    child: Text(
+                    child: Column(
+                      children: <Widget>[
+                        Text(
                       "Your previous test results",
                       style: TextStyle(fontSize: 20),
                     ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height/20,
+                    ),
+                    NiceButton(
+                    width: 3 * (MediaQuery.of(context).size.width) / 8,
+                    elevation: 4,
+                    //radius: 52,
+                    onPressed: () {
+                      AuthService.logout();
+                      Navigator.pushNamed(context, '/');
+                    },
+                    text: "Logout",
+                    background: Colors.red,
+                  ),
+                      ],
+                    )
                   ),
                   SizedBox(
-                    height: 5,
+                    height: MediaQuery.of(context).size.height/20,
                   ),
                   FutureBuilder(
                       future: TestService().getTests(),

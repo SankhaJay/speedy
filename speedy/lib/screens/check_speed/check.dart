@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
+import 'package:nice_button/NiceButton.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:speedy/screens/home_screen/home.dart';
 import 'package:geolocator/geolocator.dart';
@@ -44,8 +45,6 @@ class _CheckState extends State<Check> {
       // details = await ;
       Logger().i(details);
     });
-
-    print("nsjdngjksnjgndngsglsdngksndgls");
   }
 
   @override
@@ -117,7 +116,9 @@ class _CheckState extends State<Check> {
                                         "   Test ID ",
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
-                                            fontSize: 12, color: Colors.white),
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                       SizedBox(height: 5),
                                       Row(
@@ -130,7 +131,7 @@ class _CheckState extends State<Check> {
                                                 "Speed",
                                                 style: TextStyle(
                                                     fontSize: 15,
-                                                    color: Colors.white),
+                                                    color: Colors.white,fontWeight: FontWeight.w700,),
                                               ),
                                               Text(
                                                 speed,
@@ -140,17 +141,17 @@ class _CheckState extends State<Check> {
                                               ),
                                             ],
                                           ),
+                                          SizedBox(height: 5),
                                           Column(
                                             children: <Widget>[
                                               Text(
                                                 "ISP",
                                                 style: TextStyle(
                                                     fontSize: 15,
-                                                    color: Colors.white),
+                                                    color: Colors.white,fontWeight: FontWeight.w700,),
                                               ),
                                               Text(
-                                                "Lanka Bell",
-                                                // "${snapshot.data[index].isp}",
+                                                "${snapshot.data[index].isp}",
                                                 style: TextStyle(
                                                     fontSize: 18,
                                                     color: Colors.white),
@@ -169,7 +170,7 @@ class _CheckState extends State<Check> {
                                                 "Location",
                                                 style: TextStyle(
                                                     fontSize: 15,
-                                                    color: Colors.white),
+                                                    color: Colors.white,fontWeight: FontWeight.w700,),
                                               ),
                                               Text(
                                                 "${snapshot.data[index].address}",
@@ -192,14 +193,14 @@ class _CheckState extends State<Check> {
                                                 "Latitude",
                                                 style: TextStyle(
                                                     fontSize: 15,
-                                                    color: Colors.white),
+                                                    color: Colors.white,fontWeight: FontWeight.w700,),
                                               ),
                                               //SizedBox(height: 5),
                                               Text(
                                                 "${snapshot.data[index].latitude}",
                                                 style: TextStyle(
                                                     fontSize: 18,
-                                                    color: Colors.white),
+                                                    color: Colors.white,),
                                               ),
                                             ],
                                           ),
@@ -209,7 +210,7 @@ class _CheckState extends State<Check> {
                                                 "Longitude",
                                                 style: TextStyle(
                                                     fontSize: 15,
-                                                    color: Colors.white),
+                                                    color: Colors.white,fontWeight: FontWeight.w700,),
                                               ),
                                               //SizedBox(height: 5),
                                               Text(
@@ -224,7 +225,7 @@ class _CheckState extends State<Check> {
                                       ),
                                       SizedBox(height: 10),
                                       Text(
-                                        "   Tested at - 2020-03-28T04:41:08.351+00:00",
+                                        "   Tested at - ${DateTime.now()}",
                                         style: TextStyle(
                                             fontSize: 12, color: Colors.white),
                                       ),
@@ -232,7 +233,18 @@ class _CheckState extends State<Check> {
                                   ),
                                 );
                               },
-                            )
+                            ),
+                            NiceButton(
+                              width:
+                                  3 * (MediaQuery.of(context).size.width) / 8,
+                              elevation: 8,
+                              //radius: 52,
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/home');
+                              },
+                              text: "Go Back",
+                              background: Colors.black,
+                            ),
                           ],
                         );
                       } else {

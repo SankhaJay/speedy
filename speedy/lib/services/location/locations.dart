@@ -11,7 +11,8 @@ class LocationData {
     this.speed,
     this.lng,
     this.lat,
-    this.name
+    this.name,
+    this.isp
   });
 
   factory LocationData.fromJson(Map<String, dynamic> json) => _$LocationDataFromJson(json);
@@ -21,6 +22,7 @@ class LocationData {
   final double lng;
   final double lat;
   final String name;
+  final String isp;
 
 }
 

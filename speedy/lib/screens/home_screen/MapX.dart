@@ -12,6 +12,7 @@ class _MapState extends State<MapX> {
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final locationDetails = await locations.getLocationData();
     setState(() {
+      String data = "Colombo Sri Lanka Dialog Axiata";
       for (final location in locationDetails.locationData) {
         /// this will prompt an error in [locations.getLocationData]
         /// to overcome it change the url with your local url forwarded by ngrok
@@ -22,6 +23,8 @@ class _MapState extends State<MapX> {
           infoWindow: InfoWindow(
             title: location.speed,
             snippet: location.name,
+            // snippet: data,
+            
           ),
         );
         _markers[location.name] = marker;
@@ -35,8 +38,8 @@ class _MapState extends State<MapX> {
         child: GoogleMap(
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
-              target: const LatLng(0, 0),
-              zoom: 2,
+              target: const LatLng(7.2906, 80.6337),
+              zoom: 7,
             ),
             markers: _markers.values.toSet()));
   }

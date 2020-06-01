@@ -8,19 +8,21 @@ String userMail;
 
 class AuthService {
   final baseUrl = Config.baseUrl;
-  Future<bool> login(String email, String password){
+  Future<bool> login(String email, String password) {
     userMail = email;
     Logger().i('$email');
     Logger().i('$password');
     print(baseUrl);
     //Logger().i( 'Uri $baseUrl/auth/login?officer_id=$email&password=$password');
-    return Dio().get(
+    return Dio()
+        .get(
       '$baseUrl/auth/login?email=$email&password=$password',
       // data: {
-      //   "officerID": id, 
+      //   "officerID": id,
       //   "password": password,
-      // },  
-    ).then((res) async {
+      // },
+    )
+        .then((res) async {
       Logger().i('$res');
       if (res.statusCode == 200) {
         print(res);
@@ -31,21 +33,20 @@ class AuthService {
     }).catchError((err) => false);
   }
 
-Future<bool> register(Map user){
+  Future<bool> register(Map user) {
     var user_list = user.values.toList();
     Logger().i('${user['email']}');
     //Logger().i("$user['contact_number']");
     //Logger().i( 'Uri $baseUrl/auth/register?officer_id=$email&password=$password');
     return Dio().post(
       '$baseUrl/auth/register',
-      data:{
-        "email": user['email'], 
+      data: {
+        "email": user['email'],
         "password": user['password'],
         "first_name": user['first_name'],
         "last_name": user['last_name'],
         "contact_number": user['contact_number'],
-
-      },  
+      },
     ).then((res) async {
       Logger().i('$res');
       if (res.statusCode == 201) {
@@ -56,21 +57,20 @@ Future<bool> register(Map user){
         //return true;
         return await _saveToken(token);
       }
-      
+
       return false;
     }).catchError((err) => false);
   }
 
-  Future<bool> logout()  async {
+  static Future<bool> logout() async {
     //BuildContext context;
-    await SharedPreferences.getInstance().then((prefs){
-          prefs.remove("token");
-          
-          //Application.router.navigateTo(context,'/',clearStack: true);
-          
+    await SharedPreferences.getInstance().then((prefs) {
+      prefs.remove("token");
+
+      //Application.router.navigateTo(context,'/',clearStack: true);
     });
-    
-  Logger().i("logout");
+
+    Logger().i("logout");
     return true;
   }
 
@@ -84,13 +84,11 @@ Future<bool> register(Map user){
       return true;
     }).catchError((err) => false);
   }
-  
-  Future<bool> isLoggedIn(){
+
+  static Future<bool> isLoggedIn() {
     return PrefService()
         .getToken()
         .then((token) => (token != null) ? true : false)
         .catchError((error) => Logger().e(error));
   }
-  
 }
-

@@ -61,7 +61,9 @@ class _AuthScreenState extends State<AuthScreen> {
               key: _formKey,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 200),
+                  SizedBox(
+                    height:MediaQuery.of(context).size.height/5 
+                  ),
                   Center(
                       child: Text(
                     "Welcome",
@@ -119,20 +121,32 @@ class _AuthScreenState extends State<AuthScreen> {
                       keyboardType: TextInputType.text,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height/20,
+                  ),
                   NiceButton(
-                    width: 1 * (MediaQuery.of(context).size.width) / 4,
+                    width: 3 * (MediaQuery.of(context).size.width) / 8,
                     elevation: 4,
                     //radius: 52,
                     onPressed: () {
                       _handleLogin(_email, _password, context);
                     },
                     text: "Login",
-                    background: gold,
+                    background: Colors.yellow,
                   ),
-                  SizedBox(height: 20),
-                  Text("OR"),
-                  SizedBox(height: 20),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height/20,
+                  ),
+                  Text(
+                    "OR",
+                    style: TextStyle(
+                      fontFamily: 'Corben',
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height/20,
+                  ),
                   NiceButton(
                     width: 3 * (MediaQuery.of(context).size.width) / 8,
                     elevation: 8,
