@@ -36,6 +36,7 @@ class AuthService {
   Future<bool> register(Map user) {
     var user_list = user.values.toList();
     Logger().i('${user['email']}');
+    userMail = user['email'];
     //Logger().i("$user['contact_number']");
     //Logger().i( 'Uri $baseUrl/auth/register?officer_id=$email&password=$password');
     return Dio().post(
