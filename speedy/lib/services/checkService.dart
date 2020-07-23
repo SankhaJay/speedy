@@ -7,6 +7,8 @@ import 'package:speedy/config/config.dart';
 import 'package:speedy/screens/check_speed/check.dart';
 import 'package:get_ip/get_ip.dart';
 import 'package:speedy/services/testservice.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 class Details {
   String address;
@@ -28,7 +30,7 @@ class CheckService {
     try {
       //print(position.latitude);
       var dir = await getApplicationDocumentsDirectory();
-      var now = new DateTime.now();
+      var now = DateTime.now();
       await dio.download(imgUrl, "${dir.path}/image.jpg",
           onReceiveProgress: (rec, total) {
         print("Receive: $rec, Total: $total");
@@ -36,7 +38,7 @@ class CheckService {
         print(dir.path);
         Check().progressString = (((rec / total) * 100));
       });
-      var later = new DateTime.now();
+      var later = DateTime.now();
       print(later);
       time = later.difference(now);
       print(time.inSeconds);
@@ -63,43 +65,84 @@ class CheckService {
     String email = prefs.getString("email");
     String ip;
     print(email);
-    await Dio().get('https://api.ipify.org').then((res) {
+    // Response res = await Dio().get('https://api.ipify.org');
+      var res = await http.get("https://api.ipify.org");
+    print(res);
+    if (res != null) {
       if (res.statusCode == 200) {
-        print(res);
-        ip = res.data as String;
+        // var jsonResponse = convert.jsonDecode(res.body);
+        // ip = jsonResponse.data;
+        // print(jsonResponse);
+        // ip = res.body['ip'];
+        ip = res.body;
         print(ip);
+        Response response = await Dio().post(
+          '$baseUrl/tests/check-speed',
+          data: {
+            "email": email,
+            "speed": speed,
+            "location": {
+              "name": address,
+              "longitude": position.longitude,
+              "latitude": position.latitude
+            },
+            "ip": ip
+          },
+        );
+
+        if (response != null) {
+          if (response.statusCode == 201) {
+            isp = response.data["data"]["isp"];
+            Details details =
+                Details(address, position.latitude, position.longitude, isp);
+                details_list.add(details);
+                return details_list;
+          }
+          else{
+            return null;
+          }
+        }
       } else {
         return null;
       }
-    }).catchError((err)=>false);
-    print(ip);
-    return await Dio().post(
-      '$baseUrl/tests/check-speed',
-      data: {
-        "email": email,
-        "speed": speed,
-        "location": {
-          "name": address,
-          "longitude": position.longitude,
-          "latitude": position.latitude
-        },
-        "ip": ip
-      },
-    ).then((res) async {
-      Logger().i('$res');
-      isp = res.data["data"]["isp"];
-      Logger().i('${res.data["data"]}');
+    }
+    // await Dio().get('https://api.ipify.org').then((res) {
+    //   if (res.statusCode == 200) {
+    //     print(res);
+    //     ip = res.data as String;
+    //     print(ip);
+    //   } else {
+    //     return false;
+    //   }
+    // }).catchError((err)=>false);
+    // print(ip);
+    // await Dio().post(
+    //   '$baseUrl/tests/check-speed',
+    //   data: {
+    //     "email": email,
+    //     "speed": speed,
+    //     "location": {
+    //       "name": address,
+    //       "longitude": position.longitude,
+    //       "latitude": position.latitude
+    //     },
+    //     "ip": ip
+    //   },
+    // ).then((res) async {
+    //   Logger().i('$res');
+    //   isp = res.data["data"]["isp"];
+    //   Logger().i('${res.data["data"]}');
 
-      if (res.statusCode == 201) {
-        Logger().i('here');
-        print(res);
-        Details details =
-            Details(address, position.latitude, position.longitude, isp);
-        details_list.add(details);
-        return details_list;
-      }
+    //   if (res.statusCode == 201) {
+    //     Logger().i('here');
+    //     print(res);
+    //     Details details =
+    //         Details(address, position.latitude, position.longitude, isp);
+    //     details_list.add(details);
+    //     return details_list;
+    //   }
 
-      return false;
-    }).catchError((err) => false);
+    //   return false;
+    // }).catchError((err) => false);
   }
 }
