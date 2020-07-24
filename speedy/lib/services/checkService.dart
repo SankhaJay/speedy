@@ -15,11 +15,17 @@ class Details {
   double latitude;
   double longitude;
   String isp;
+  String speed;
 
-  Details(this.address, this.latitude, this.longitude, this.isp);
+  Details(this.address, this.latitude, this.longitude, this.isp, this.speed);
+
+  String toParams()=>"?time=${DateTime.now()}&isp=$isp&speed=$speed&longitude=$longitude&latitude=$latitude";
 }
 
 class CheckService {
+   
+
+
   final imgUrl = "https://unsplash.com/photos/iEJVyyevw-U/download?force=true";
   Duration time;
   final baseUrl = Config.baseUrl;
@@ -94,8 +100,18 @@ class CheckService {
           if (response.statusCode == 201) {
             isp = response.data["data"]["isp"];
             Details details =
-                Details(address, position.latitude, position.longitude, isp);
+                Details(address, position.latitude, position.longitude, isp, speed);
+
                 details_list.add(details);
+                try{
+                  await http.get("https://script.google.com/macros/s/AKfycbyXmN4EaXhVGMcSlLZ45GoWR0RS_3dWRNZ2jdgRO2SEvB1W9js/exec"+ details.toParams()).then((gsheetRes){
+                    print(gsheetRes);
+                    var data = convert.jsonDecode(gsheetRes.body)['status'];
+                    print(data);
+                  });
+                }catch(err){
+                  print(err);
+                }
                 return details_list;
           }
           else{
@@ -145,4 +161,7 @@ class CheckService {
     //   return false;
     // }).catchError((err) => false);
   }
+
+
+  
 }
