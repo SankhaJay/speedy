@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:logger/logger.dart';
@@ -16,10 +18,9 @@ class Details {
   double longitude;
   String isp;
   String speed;
-
   Details(this.address, this.latitude, this.longitude, this.isp, this.speed);
 
-  String toParams()=>"?time=${DateTime.now()}&isp=$isp&speed=$speed&longitude=$longitude&latitude=$latitude";
+  String toParams()=>"?time=${DateTime.now()}&isp=$isp&speed=$speed&longitude=$longitude&latitude=$latitude&address=$address";
 }
 
 class CheckService {
@@ -72,7 +73,7 @@ class CheckService {
     String ip;
     print(email);
     // Response res = await Dio().get('https://api.ipify.org');
-      var res = await http.get("https://api.ipify.org");
+      var res = await http.get("https://www.trackip.net/ip?json");
     print(res);
     if (res != null) {
       if (res.statusCode == 200) {
@@ -80,7 +81,8 @@ class CheckService {
         // ip = jsonResponse.data;
         // print(jsonResponse);
         // ip = res.body['ip'];
-        ip = res.body;
+        final ipRes = json.decode(res.body);
+        ip = ipRes["IP"];
         print(ip);
         Response response = await Dio().post(
           '$baseUrl/tests/check-speed',
